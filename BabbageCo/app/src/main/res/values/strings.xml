@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Babbage &amp; Co.</string>
+    <string name="company_name_heading">company_name_heading</string>
+    <string name="babbage_and_co">Babbage and Co.</string>
+    <string name="analytical_engine_picture">analytical_engine_picture</string>
+    <string name="company_description">company_description</string>
+    <string name="babbage_and_co_is_a_british_multinational_technology_company_headquartered_in_london_england">Babbage and Co. is a British multinational technology company headquartered in London, England.</string>
+    <string name="location_image">location_image</string>
+    <string name="location_text">location_text</string>
+    <string name="call_image">call_image</string>
+    <string name="call_text">call_text</string>
+    <string name="_44_1234_567_890">+44 (1234) 567 890</string>
+    <string name="london_united_kingdom">London, United Kingdom</string>
+    <string name="email_image">email_image</string>
+    <string name="email_text">email_text</string>
+    <string name="sayhi_babbage_co_uk">sayhi@babbage.co.uk</string>
+    <string name="founder_image">founder_image</string>
+    <string name="founder_text">founder_text</string>
+    <string name="charles_babbage_kh_frs">Charles Babbage KH FRS</string>
+    <string name="_44_1234_xxx_xxx">+44 (1234) XXX XXX</string>
+    <string name="suspended_inbox_currently_flooded">Suspended. Inbox currently flooded (._.\')</string>
+    <string name="suspended_century_long_backlog">Suspended. Century long backlog (._.\' )</string>
+</resources>
