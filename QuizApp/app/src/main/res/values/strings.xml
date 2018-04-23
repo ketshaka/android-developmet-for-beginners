@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Quiz App</string>
+    <string name="game_show">game show!</string>
+    <string name="repeatedly_compares_each_pair_of_adjacent_names_and_swaps_them_if_they_are_not_in_the_right_order_the_process_is_repeated_until_no_swaps_required">Repeatedly compares each pair of adjacent names and swaps them if they are not in the right order. The process is repeated until no swaps required.</string>
+    <string name="which_sort_algorithm_is_described_below">Which sort algorithm is described below?</string>
+    <string name="question_4">question 4</string>
+    <string name="trees">Trees</string>
+    <string name="stacks">Stacks</string>
+    <string name="queues">Queues</string>
+    <string name="which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_list">Which of the following data structure(s) can be seen as a form of list?</string>
+    <string name="question_3">question 3</string>
+    <string name="question_2">question 2</string>
+    <string name="no">No (\'\'.)</string>
+    <string name="oh_yes">Oh yes!</string>
+    <string name="iterative_structures_refer_to_algorithms_where_the_instructions_are_repeated_in_a_looping_manner">Iterative structures refer to algorithms where the instructions are repeated in a looping manner.</string>
+    <string name="question_1">question 1</string>
+    <string name="algorithms_and_data_structures">algorithms and data structures</string>
+    <string name="the">the</string>
+    <string name="bubble_sort">Bubble sort</string>
+    <string name="insertion_sort">Insertion sort</string>
+    <string name="selection_sort">Selection sort</string>
+    <string name="submit">Submit</string>
+    <string name="reset">Reset</string>
+    <string name="answer">Answer</string>
+</resources>
