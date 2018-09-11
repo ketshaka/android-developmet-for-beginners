@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Background color for the information category -->
+    <color name="category_information">#03DAC5</color>
+
+    <!-- Background color for the nature members category -->
+    <color name="category_nature">#FFDE03</color>
+
+    <!-- Background color for the nightlife category -->
+    <color name="category_nightlife">#0336FF</color>
+
+    <!-- Background color for the eat and drink category -->
+    <color name="category_eat_and_drink">#FF0266</color>
 </resources>

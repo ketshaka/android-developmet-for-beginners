@@ -10,49 +10,49 @@
     <!-- Information category -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/category_information">
         <TextView
             android:id="@+id/information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/information"
-            android:padding="16dp"/>
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/information" />
     </FrameLayout>
 
     <!-- Nature category -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/category_nature">
         <TextView
             android:id="@+id/nature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nature"
-            android:padding="16dp"/>
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/nature" />
     </FrameLayout>
 
     <!-- Nightlife category -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/category_nightlife">
         <TextView
             android:id="@+id/nightlife"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nightlife"
-            android:padding="16dp"/>
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/nightlife" />
     </FrameLayout>
 
     <!-- Eat and Drink category -->
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/category_eat_and_drink">
         <TextView
             android:id="@+id/eat_and_drink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/eat_and_drink"
-            android:padding="16dp"/>
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/eat_and_drink" />
     </FrameLayout>
 
 </LinearLayout>
