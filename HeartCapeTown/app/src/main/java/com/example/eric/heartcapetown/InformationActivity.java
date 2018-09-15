@@ -11,11 +11,13 @@ public class InformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.word_list);
+        setContentView(R.layout.attraction_list);
 
+
+        // Create list of visitor information centres
         ArrayList<Attraction> attractions = new ArrayList<>();
-        attractions.add(new Attraction("Picture1", "Cool place", "www.coolplace.com"));
-        attractions.add(new Attraction("Picture2", "Okay place", "0254685"));
+        attractions.add(new Attraction("Cape Town International Airport", "Ground Floor, Arrivals", "airport@capetown.travel", R.drawable.airport));
+        attractions.add(new Attraction("City Centre", "Cape Town Tourism, Pinnacle Building, corner of Burg and Castle streets, Cape Town", "info@capetown.travel", R.drawable.city_centre));
 
         ListView attractionsListView = (ListView) findViewById(R.id.list);
 
