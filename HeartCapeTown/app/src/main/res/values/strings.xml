@@ -1,8 +1,22 @@
 <resources>
     <string name="app_name">Heart Cape Town</string>
+    <!-- Category name for visitor information centres -->
     <string name="information">Information</string>
+    <!-- Category name for nature tourist attractions -->
     <string name="nature">Nature</string>
+    <!-- Category name for nightlife tourist attractions -->
     <string name="nightlife">Nightlife</string>
+    <!-- Category name for eat and drink tourist attractions -->
     <string name="eat_and_drink">Eat and Drink</string>
+
+    <!-- Heading for first information centre: Cape Town International Airport -->
+    <string name="cape_town_airport">Cape Town International Airport</string>
+
+    <!-- Heading for second information centre: City Centre -->
+    <string name="city_centre">City Centre</string>
+
+    <!-- Heading for third information centre: V&A Waterfront -->
+    <string name="v_a_waterfront"><![CDATA[V&A Waterfront]]></string>
     <string name="picture_of_attraction">picture of attraction</string>
+
 </resources>
