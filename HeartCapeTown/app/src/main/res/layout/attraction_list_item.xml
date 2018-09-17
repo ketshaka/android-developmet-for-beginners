@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp">
@@ -13,7 +13,6 @@
         android:contentDescription="@string/picture_of_attraction" />
 
     <RelativeLayout
-        android:id="@+id/text_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/picture">
@@ -22,36 +21,39 @@
             android:id="@+id/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Name of Attraction"
-            android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"/>
+            android:paddingRight="16dp"
+            android:paddingTop="2dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@android:color/white"
+            tools:text="Name of Attraction" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/heading"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:text="Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "
-            android:paddingTop="2dp"
             android:paddingBottom="2dp"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingLeft="16dp"/>
+            android:paddingTop="2dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/white"
+            tools:text="Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah " />
 
         <TextView
             android:id="@+id/contacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/description"
-            android:paddingTop="2dp"
             android:paddingBottom="2dp"
-            android:paddingRight="16dp"
             android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="2dp"
+            android:text="@string/v_a_waterfront"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:text="Find us blah blah blah blah blah blah blah "
-            android:text="@string/v_a_waterfront"/>
+            android:textColor="@android:color/white"
+            tools:text="Find us blah blah blah blah blah blah blah " />
     </RelativeLayout>
 </RelativeLayout>

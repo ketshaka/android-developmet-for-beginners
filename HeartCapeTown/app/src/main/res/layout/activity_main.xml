@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/category_information">
+
         <TextView
             android:id="@+id/information"
             style="@style/CategoryStyle"
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/category_nature">
+
         <TextView
             android:id="@+id/nature"
             style="@style/CategoryStyle"
@@ -36,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/category_nightlife">
+
         <TextView
             android:id="@+id/nightlife"
             style="@style/CategoryStyle"
@@ -48,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/category_eat_and_drink">
+
         <TextView
             android:id="@+id/eat_and_drink"
             style="@style/CategoryStyle"
