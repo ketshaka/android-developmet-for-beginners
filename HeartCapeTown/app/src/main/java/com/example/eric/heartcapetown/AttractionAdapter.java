@@ -1,6 +1,7 @@
 package com.example.eric.heartcapetown;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,18 @@ import java.util.List;
 
 public class AttractionAdapter extends ArrayAdapter<Attraction> {
 
+    // Resource ID for the background colour for the list of attractions
+    private int mColorResourceId;
+
     /**
      * Create a new {@link AttractionAdapter} object
      *
      * @param context is the current context (activity) that the adapter is being created
      * @param attractions is the list of {@link Attraction} to be displayed
      */
-    public AttractionAdapter(Context context, List<Attraction> attractions) {
+    public AttractionAdapter(Context context, List<Attraction> attractions, int colorResourceId) {
         super(context, 0, attractions);
+        mColorResourceId = colorResourceId;
     }
 
     @Override
@@ -58,6 +63,14 @@ public class AttractionAdapter extends ArrayAdapter<Attraction> {
         // based on the resource ID
         imageView.setImageResource(currentAttraction.getImageResourceId());
 
+        // Set the theme colour for the list item
+        View textContainer = listItemView.findViewById(R.id.text_container);
+        // Find the colour that the resource ID maps to
+        int colour = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background colour of the text container View
+        textContainer.setBackgroundColor(colour);
+
+        // Return the whole list item layout
         return listItemView;
 
     }
