@@ -18,7 +18,7 @@ An educational app that quizzes a user on algorithms and data structures.
 
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/QuizApp/quiz-app-screenshot.png"
 width="332"
-height="633" />
+height="633"/>
 
 ## Project 4 Report Card Java Class
 Customised Java class that reports the grade of a student in different subjects.
@@ -30,5 +30,12 @@ A tour guide app which presents relevant information to a user visiting Cape Tow
 width="332"
 height="633">
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png"
+width="332"
+height="633"/>
+
+## Project 6 News App - Techmunch
+News feed app that gives a user regularly updated news from the internet about technology using the [Guardian API](https://open-platform.theguardian.com/).
+
+<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Techmunch/techmunch.png"
 width="332"
 height="633"/>
