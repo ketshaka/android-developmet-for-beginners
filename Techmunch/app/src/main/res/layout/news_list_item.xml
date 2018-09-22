@@ -24,12 +24,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/writer"
             style="@style/writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="By Roman Gillet" />
+            tools:text="By Roman Gillet" /> -->
 
         <TextView
             android:id="@+id/date"

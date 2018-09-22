@@ -13,7 +13,7 @@ public class News {
     private String mHeadline;
 
     // Writer of the story
-    private String mWriter;
+    // private String mWriter;
 
     // Date of the story
     private String mDate;
@@ -23,13 +23,13 @@ public class News {
      *
      * @param tag is the category the story falls under
      * @param headline is the headline of the news article
-     * @param writer is the name of the author of the news article
+     * // @param writer is the name of the author of the news article
      * @param date is the date the story was published
      */
-    public News(String tag, String headline, String writer, String date) {
+    public News(String tag, String headline, String date) {
         mTag = tag;
         mHeadline = headline;
-        mWriter = writer;
+        // mWriter = writer;
         mDate = date;
     }
 
@@ -48,9 +48,9 @@ public class News {
     }
 
     // Returns the writer of the story
-    public String getWriter() {
-        return mWriter;
-    }
+    // public String getWriter() {
+    //    return mWriter;
+    //}
 
     // Returns the date of the story
 
