@@ -54,9 +54,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
         headlineView.setText(currentNews.getHeadline());
 
         // Find the TextView with view ID writer
-        TextView writerView = (TextView) listItemView.findViewById(R.id.writer);
+        // TextView writerView = (TextView) listItemView.findViewById(R.id.writer);
         // Display the writer of the current news in that TextView
-        writerView.setText(currentNews.getWriter());
+        // writerView.setText(currentNews.getWriter());
 
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
