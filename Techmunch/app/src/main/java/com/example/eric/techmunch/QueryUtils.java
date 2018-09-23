@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper methods related to requesting and receiving news data from the Guardian newspaper
@@ -39,39 +40,39 @@ public class QueryUtils {
     public static ArrayList<News> extractNews() {
 
         // Create an empty ArrayList that we can start adding news stories to
-        ArrayList<News> news = new ArrayList<>();
+        ArrayList<News> stories = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
+            // Parse response in the SAMPLE_JSO_RESPONSE string
             JSONObject baseJsonResponse = new JSONObject(SAMPLE_JSON_RESPONSE);
-            JSONArray newsArray = baseJsonResponse.getJSONArray("response");
+            // Traverse through the JSON object
+            JSONObject jsonResults = baseJsonResponse.getJSONObject("response");
+            JSONArray resultsArray = jsonResults.getJSONArray("results");
 
+            // build up a list of stories with the response data
             for (int i = 0;
-                 i < newsArray.length();
+                 i < resultsArray.length();
                  i++) {
-                JSONObject currentNews = newsArray.getJSONObject(i);
-                JSONObject results = currentNews.getJSONObject("results");
-                String tag = results.getString("sectionName");
-                String headline = results.getString("webTitle");
-                String date = results.getString("webPublicationDate");
+                JSONObject currentStory = resultsArray.getJSONObject(i);
+                String tag = currentStory.getString("sectionName");
+                String headline = currentStory.getString("webTitle");
+                String date = currentStory.getString("webPublicationDate");
 
-                News story = new News(tag, headline, date);
-                news.add(story);
+                stories.add(new News(tag, headline, date));
             }
 
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
 
-        // Return the list of earthquakes
-        return news;
+        // Return the list of news stories
+        return stories;
     }
 }
