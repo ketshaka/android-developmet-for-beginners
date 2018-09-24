@@ -6,8 +6,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Helper methods related to requesting and receiving news data from the Guardian newspaper
@@ -61,8 +65,14 @@ public class QueryUtils {
                 String tag = currentStory.getString("sectionName");
                 String headline = currentStory.getString("webTitle");
                 String date = currentStory.getString("webPublicationDate");
+                String url = currentStory.getString("webUrl");
 
-                stories.add(new News(tag, headline, date));
+                // Create a new {@link News} object with the tag, headline and date
+                News news = new News(tag, headline, date, url);
+                // Add the new {@link News} to the list of news stories
+                stories.add(news);
+                // Consise code of the above lines
+                //stories.add(new News(tag, headline, date));
             }
 
         } catch (JSONException e) {
