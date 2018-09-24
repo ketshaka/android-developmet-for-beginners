@@ -1,13 +1,19 @@
 package com.example.eric.techmunch;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A {@link NewsAdapter} creates a a list item layout for each news story in the data source (a list
@@ -58,13 +64,20 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Display the writer of the current news in that TextView
         // writerView.setText(currentNews.getWriter());
 
+        String dateObject = new String(currentNews.getDate());
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
+        // Format the date string (i.e. "15 July 1988")
+        // String formattedDate = formatDate(dateObject);
         // Display the date of the current news in that TextView
         dateView.setText(currentNews.getDate());
+        // dateView.setText(formattedDate);
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;
     }
-
+    // private static String formatDate(String dateObject) {
+       // SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK);
+       // return dateFormat.format(dateObject);
+    // }
 }
