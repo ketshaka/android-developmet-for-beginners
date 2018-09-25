@@ -27,7 +27,6 @@ import java.util.Locale;
  */
 public final class QueryUtils {
 
-    // TODO: Edit 1 add log tag
     // Tag for log messages
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
@@ -54,10 +53,7 @@ public final class QueryUtils {
     /**
      * Return a list of {@link News} objects that has been built up from parsing a JSON response.
      */
-    // TODO: Edit 2 from arraylist to list
     public static List<News> extractNews(String requestUrl) {
-
-        // TODO: Edit 3 everything from here until 159
 
         // Create URL object
         URL url = createUrl(requestUrl);
@@ -119,7 +115,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the news JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -161,13 +157,6 @@ public final class QueryUtils {
         if (TextUtils.isEmpty(newsJSON)) {
             return null;
         }
-
-
-        /**
-         * TODO: This is at the end from line 159
-         */
-
-
 
         // Create an empty ArrayList that we can start adding news stories to
         ArrayList<News> stories = new ArrayList<>();
