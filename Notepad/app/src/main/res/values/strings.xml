@@ -3,4 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="note">Note</string>
     <string name="title">Title</string>
+    <string name="insert_dummy_data">Insert Dummy Data</string>
+    <string name="delete_all_notes">Delete All Notes</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="editor_activity_title_new_note">Add a Note</string>
+
 </resources>
