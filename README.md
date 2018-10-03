@@ -34,8 +34,7 @@ A tour guide app which presents relevant information to a user visiting Cape Tow
 - **Quick guide to Gradle** - Learned how to work with Gradle.
 - **Images and visual polish** - Polished image visuals to improve the quality of an app.
 
-<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_lauch.png" width="332" height="633">
-<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png" width="332" height="633"/>
+<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_lauch.png" width="332" height="633"> <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png" width="332" height="633"/>
 
 ## Project 5 News App - Techmunch
 News feed app that gives a user regularly updated news from the internet about technology using the [Guardian API](https://open-platform.theguardian.com/).
@@ -54,5 +53,4 @@ Note taking app that allows the user to take and store notes on their device usi
 - **Building a ContentProvider** - Learned the basics of a ContentProvider. Learned to design URIs for a ContentProvider and implemented the required functions to enable functionality of the ContentProvider.
 - **Using a CursorAdapter and CursorLoader** - Learned how to automatically load data using a CursorAdapter and CursorLoader into a scrollable list. Added functionality that enabled users to select and edit the information they have saved off.
 
-<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Notepad/notepad_main.png" width="332" height="633">
-<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Notepad/notepad_edit.png" width="332" height="633"/>
+<img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Notepad/notepad_main.png" width="332" height="633"> <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Notepad/notepad_edit.png" width="332" height="633"/>
