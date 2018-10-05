@@ -1,8 +1,12 @@
 package com.example.eric.notepad;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +14,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.example.eric.notepad.data.NoteContract;
+import com.example.eric.notepad.data.NoteDbHelper;
 
 /**
  *  Displays notes that were entered and stored in the app.
  */
 
 public class MainActivity extends AppCompatActivity {
+
+    // Database helper that will provided access to the database
+    private NoteDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +44,72 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // To access our database, we instantiate our subclass of SQLiteOpenHelper and pass the
+        // context, which is the current activity.
+        mDbHelper = new NoteDbHelper(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayDatabaseInfo();
+    }
+
+
+    /**
+     * Temporary helper method to display information in the onscreen TextView about the state of
+     * the notes database.
+     */
+    private void displayDatabaseInfo() {
+
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        // Perform this raw SQL query "SELECT * FROM notes"
+        // to get a Cursor that contains all rows from the notes table.
+        Cursor cursor = db.rawQuery("SELECT * FROM " + NoteContract.NoteEntry.TABLE_NAME, null);
+        try {
+            // Display the number of rows in the Cursor (which reflects the number of rows in the
+            // pets table in the database).
+            TextView displayView = (TextView) findViewById(R.id.text_view_note);
+            displayView.setText("Number of rows in notes database table: " + cursor.getCount());
+        } finally {
+            // Always close the cursor when you're done reading from it. This releases all its
+            // resources and makes it invalid.
+            cursor.close();
+        }
+    }
+
+    private void insertNote() {
+        // Gets the database in write mode
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Create a ContentValues object where the column names are they keys, and the note's
+        // content the values.
+        ContentValues values = new ContentValues();
+        values.put(NoteContract.NoteEntry.COLUMN_TITLE, "Sonnet 18");
+        values.put(NoteContract.NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day? " +
+                        "Thou art more lovely and more temperate " +
+                        "Rough winds do shake the darling buds of May," +
+                        "And summer’s lease hath all too short a date" +
+                        "Sometime too hot the eye of heaven shines," +
+                        "And often is his gold complexion dimm’d;" +
+                        "And every fair from fair sometime declines," +
+                        "By chance or nature’s changing course untrimm’d;" +
+                        "But thy eternal summer shall not fade" +
+                        "Nor lose possession of that fair thou owest;" +
+                        "Nor shall Death brag thou wander’st in his shade," +
+                        "When in eternal lines to time thou growest:" +
+                        "So long as men can breathe or eyes can see," +
+                "So long lives this, and this gives life to thee.");
+
+         // Insert a new row for Sonnet 18 in the database, returning the ID of that new row.
+        // The first argument for db.insert() is the notes table name.
+        // The second argument provides the name of a column in which the framework can insert
+        // NULL in the event that the ContentValues is empty (if this is set to "null", then the
+        // framework will not insert a row when there are no values).
+        // The third argument is the ContentValues object containing the info for Sonnet 18.
+        long newRowId = db.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
     }
 
     @Override
@@ -49,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                // Do nothing for now
+                insertNote();
+                displayDatabaseInfo();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_notes:
