@@ -65,14 +65,67 @@ public class MainActivity extends AppCompatActivity {
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        /**
+         *  Old query method. That could facilitate injection attacks.
+         */
         // Perform this raw SQL query "SELECT * FROM notes"
         // to get a Cursor that contains all rows from the notes table.
-        Cursor cursor = db.rawQuery("SELECT * FROM " + NoteContract.NoteEntry.TABLE_NAME, null);
+        // Cursor cursor = db.rawQuery("SELECT * FROM " + NoteContract.NoteEntry.TABLE_NAME, null);
+
+        // Define projection that specifies which columns from the database will be used after this
+        // query.
+        String[] projection = {
+                NoteContract.NoteEntry._ID,
+                NoteContract.NoteEntry.COLUMN_TITLE,
+                NoteContract.NoteEntry.COLUMN_NOTE
+        };
+
+        // Perform a query on the notes table
+        Cursor cursor = db.query(NoteContract.NoteEntry.TABLE_NAME, // table to query
+                projection, // columns to return
+                null, // columns for the WHERE clause
+                null, // values for the WHERE clause
+                null, // avoid grouping by row groups
+                null, // avoid filter by row groups
+                null); // sort order
+
+        TextView displayView = (TextView) findViewById(R.id.text_view_note);
+
         try {
-            // Display the number of rows in the Cursor (which reflects the number of rows in the
-            // pets table in the database).
-            TextView displayView = (TextView) findViewById(R.id.text_view_note);
-            displayView.setText("Number of rows in notes database table: " + cursor.getCount());
+            // Create a header in the Text View that looks like this:
+            //
+            // The notes table contains <number of rows in Cursor> notes.
+            // _id
+            // title
+            // note
+            //
+            // In the while loop below, iterate through the rows of the cursor and display the
+            // information from each column in this order.
+            displayView.setText("The notes table contains " + cursor.getCount() + " notes.\n\n");
+            displayView.append(NoteContract.NoteEntry._ID + "\n" +
+                    NoteContract.NoteEntry.COLUMN_TITLE + "\n" +
+                    NoteContract.NoteEntry.COLUMN_NOTE + "\n");
+
+            // Figure out the index of each column
+            int idColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry._ID);
+            int titleColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_TITLE);
+            int noteColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_NOTE);
+
+            // Iterate through all the returned rows in the cursor
+            while (cursor.moveToNext()) {
+                // Use that index to extract the String or Int value of the word at the current
+                // row the cursor is on.
+                int currentID = cursor.getInt(idColumnIndex);
+                String currentTitle = cursor.getString(titleColumnIndex);
+                String currentNote = cursor.getString(noteColumnIndex);
+
+                // Display the values from each column of the current row in the cursor in the
+                // TextView.
+                displayView.append(("\n" + currentID + "\n" +
+                        currentTitle + "\n" +
+                        currentNote + "\n"));
+            }
         } finally {
             // Always close the cursor when you're done reading from it. This releases all its
             // resources and makes it invalid.
@@ -88,20 +141,20 @@ public class MainActivity extends AppCompatActivity {
         // content the values.
         ContentValues values = new ContentValues();
         values.put(NoteContract.NoteEntry.COLUMN_TITLE, "Sonnet 18");
-        values.put(NoteContract.NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day? " +
-                        "Thou art more lovely and more temperate " +
-                        "Rough winds do shake the darling buds of May," +
-                        "And summer’s lease hath all too short a date" +
-                        "Sometime too hot the eye of heaven shines," +
-                        "And often is his gold complexion dimm’d;" +
-                        "And every fair from fair sometime declines," +
-                        "By chance or nature’s changing course untrimm’d;" +
-                        "But thy eternal summer shall not fade" +
-                        "Nor lose possession of that fair thou owest;" +
-                        "Nor shall Death brag thou wander’st in his shade," +
-                        "When in eternal lines to time thou growest:" +
-                        "So long as men can breathe or eyes can see," +
-                "So long lives this, and this gives life to thee.");
+        values.put(NoteContract.NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day?\n" +
+                        "Thou art more lovely and more temperate\n" +
+                        "Rough winds do shake the darling buds of May,\n" +
+                        "And summer’s lease hath all too short a date\n" +
+                        "Sometime too hot the eye of heaven shines,\n" +
+                        "And often is his gold complexion dimm’d;\n" +
+                        "And every fair from fair sometime declines,\n" +
+                        "By chance or nature’s changing course untrimm’d;\n" +
+                        "But thy eternal summer shall not fade\n" +
+                        "Nor lose possession of that fair thou owest;\n" +
+                        "Nor shall Death brag thou wander’st in his shade,\n" +
+                        "When in eternal lines to time thou growest:\n" +
+                        "So long as men can breathe or eyes can see,\n" +
+                "So long lives this, and this gives life to thee.\n");
 
          // Insert a new row for Sonnet 18 in the database, returning the ID of that new row.
         // The first argument for db.insert() is the notes table name.
