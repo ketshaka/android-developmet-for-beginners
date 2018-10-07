@@ -7,14 +7,15 @@ import android.net.Uri;
 
 public class NoteProvider extends ContentProvider {
 
+    /** Database helper object */
+    private NoteDbHelper mDbHelper;
+
     /**
      * Initialize the provider and the database helper object.
      */
     @Override
     public boolean onCreate() {
-        // TODO: Create and initialize a NoteDbHelper object to gain access to the notes database.
-        // Make sure the variable is a global variable, so it can be referenced from other
-        // ContentProvider methods.
+        mDbHelper = new NoteDbHelper(getContext());
         return true;
     }
 
