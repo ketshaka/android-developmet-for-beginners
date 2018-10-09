@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -25,9 +26,6 @@ import com.example.eric.notepad.data.NoteDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Database helper that will provided access to the database
-    private NoteDbHelper mDbHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // To access our database, we instantiate our subclass of SQLiteOpenHelper and pass the
-        // context, which is the current activity.
-        mDbHelper = new NoteDbHelper(this);
     }
 
     @Override
@@ -56,15 +50,11 @@ public class MainActivity extends AppCompatActivity {
         displayDatabaseInfo();
     }
 
-
     /**
      * Temporary helper method to display information in the onscreen TextView about the state of
      * the notes database.
      */
     private void displayDatabaseInfo() {
-
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         /**
          *  Old query method. That could facilitate injection attacks.
@@ -81,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
                 NoteContract.NoteEntry.COLUMN_NOTE
         };
 
-        // Perform a query on the notes table
-        Cursor cursor = db.query(NoteContract.NoteEntry.TABLE_NAME, // table to query
+        // Perform a query on the provider using the ContentResolver.
+        // Use the {@link NoteContract.NoteEntry#CONTENT_URI} to access the note data.
+        Cursor cursor = getContentResolver().query(
+                NoteContract.NoteEntry.CONTENT_URI, // content URI of the table
                 projection, // columns to return
-                null, // columns for the WHERE clause
-                null, // values for the WHERE clause
-                null, // avoid grouping by row groups
-                null, // avoid filter by row groups
+                null, // selection criteria
+                null, // selection criteria
                 null); // sort order
 
         TextView displayView = (TextView) findViewById(R.id.text_view_note);
@@ -133,36 +123,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Helper method to insert hardcoded notes data into the database. For debugging purposes only.
+     */
     private void insertNote() {
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         // Create a ContentValues object where the column names are they keys, and the note's
         // content the values.
         ContentValues values = new ContentValues();
-        values.put(NoteContract.NoteEntry.COLUMN_TITLE, "Sonnet 18");
+        values.put(NoteContract.NoteEntry.COLUMN_TITLE, "Sonnet 18 x William Shakespeare");
         values.put(NoteContract.NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day?\n" +
-                        "Thou art more lovely and more temperate\n" +
+                        "Thou art more lovely and more temperate:\n" +
                         "Rough winds do shake the darling buds of May,\n" +
-                        "And summer’s lease hath all too short a date\n" +
+                        "And summer’s lease hath all too short a date:\n" +
                         "Sometime too hot the eye of heaven shines,\n" +
                         "And often is his gold complexion dimm’d;\n" +
                         "And every fair from fair sometime declines,\n" +
                         "By chance or nature’s changing course untrimm’d;\n" +
-                        "But thy eternal summer shall not fade\n" +
+                        "But thy eternal summer shall not fade:\n" +
                         "Nor lose possession of that fair thou owest;\n" +
                         "Nor shall Death brag thou wander’st in his shade,\n" +
                         "When in eternal lines to time thou growest:\n" +
                         "So long as men can breathe or eyes can see,\n" +
                 "So long lives this, and this gives life to thee.\n");
 
-         // Insert a new row for Sonnet 18 in the database, returning the ID of that new row.
-        // The first argument for db.insert() is the notes table name.
-        // The second argument provides the name of a column in which the framework can insert
-        // NULL in the event that the ContentValues is empty (if this is set to "null", then the
-        // framework will not insert a row when there are no values).
-        // The third argument is the ContentValues object containing the info for Sonnet 18.
-        long newRowId = db.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
+        // Insert a new row for Sonnet 18 into the provider using the ContentResolver.
+        // Use the {@link NoteContract.NoteEntry#CONTENT_URI} to indicate that we want to insert
+        // into the notes database table.
+        // Receive the new content URI that will allow us to access Sonnet 18 data in the future.
+        Uri newUri = getContentResolver().insert(NoteContract.NoteEntry.CONTENT_URI, values);
     }
 
     @Override
