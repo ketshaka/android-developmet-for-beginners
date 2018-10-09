@@ -2,6 +2,7 @@ package com.example.eric.notepad;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -41,27 +42,22 @@ public class EditorActivity extends AppCompatActivity {
         String titleString = mTitleEditText.getText().toString();
         String noteString = mNoteEditText.getText().toString();
 
-        // Create database helper
-        NoteDbHelper mDbHelper = new NoteDbHelper(this);
-
-        // Gets the database in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
         // Create a ContentValues object where the column names are they keys, and the note's
         // content the values.
         ContentValues values = new ContentValues();
         values.put(NoteContract.NoteEntry.COLUMN_TITLE, titleString);
         values.put(NoteContract.NoteEntry.COLUMN_NOTE, noteString);
 
-        // Insert a new row for a note in the database, returning the ID of that new row.
-        long newRowId = db.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
+        // Insert a new note into the provider, returning the content URI for the new note.
+        Uri newUri = getContentResolver().insert(NoteContract.NoteEntry.CONTENT_URI, values);
+
         // Show a toast message depending on whether or not the insertion was successful
-        if (newRowId == -1) {
-            // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error with saving note", Toast.LENGTH_SHORT).show();
+        if (newUri == null) {
+            // If the new content URI is null, then there was an error with insertion.
+            Toast.makeText(this, getString(R.string.editor_insert_note_failed), Toast.LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Note saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.editor_insert_note_successful), Toast.LENGTH_SHORT).show();
         }
     }
     @Override
