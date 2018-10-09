@@ -8,5 +8,7 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="editor_activity_title_new_note">Add a Note</string>
+    <string name="editor_insert_note_successful">Note saved</string>
+    <string name="editor_insert_note_failed">Error with saving note</string>
 
 </resources>
