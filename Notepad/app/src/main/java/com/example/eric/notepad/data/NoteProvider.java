@@ -7,6 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 public class NoteProvider extends ContentProvider {
 
@@ -114,7 +115,28 @@ public class NoteProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        return null;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case NOTES:
+                return insertNote(uri, contentValues);
+            default:
+                throw new IllegalArgumentException("Insertion is not supported for " + uri);
+        }
+    }
+
+    /**
+     * Insert a note into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertNote(Uri uri, ContentValues values) {
+        // Get writeable database to insert data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new note with the given values
+        long id = database.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
     }
 
     /**
@@ -122,15 +144,55 @@ public class NoteProvider extends ContentProvider {
      */
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        return 0;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case NOTES:
+                return updateNote(uri, contentValues, selection, selectionArgs);
+            case NOTE_ID:
+                // For the NOTE_ID code, extract out the ID from the URI, so we know which row to
+                // update. Selection will be "_id=?" and selection arguments will be a String array
+                // containing the actual ID.
+                selection = NoteContract.NoteEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateNote(uri, contentValues, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Update is not supported for " + uri);
+        }
     }
 
+    /**
+     * Update notes in the database with the given content values. Apply the changes to the rows
+     * specified in the selection and selection arguments (which could be 0 or 1 or more notes).
+     * Return the number of rows that were successfully updated.
+     */
+    private int updateNote(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        // Get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Returns the number of database rows affected by the update statement
+        return database.update(NoteContract.NoteEntry.TABLE_NAME, values, selection, selectionArgs);
+    }
     /**
      * Delete the data at the given selection and selection arguments.
      */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        // Get writeable database to delete the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case NOTES:
+                // Delete all rows that match the selection and selection args
+                return database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+            case NOTE_ID:
+                // Delete a single row given by the ID in the URI
+                selection = NoteContract.NoteEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Deletion is not supported for " + uri);
+        }
     }
 
     /**
@@ -138,6 +200,14 @@ public class NoteProvider extends ContentProvider {
      */
     @Override
     public String getType(Uri uri) {
-        return null;
+        final int match = sUriMatcher.match(uri);
+        switch (match) {
+            case NOTES:
+                return NoteContract.NoteEntry.CONTENT_LIST_TYPE;
+            case NOTE_ID:
+                return NoteContract.NoteEntry.CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
+        }
     }
 }
