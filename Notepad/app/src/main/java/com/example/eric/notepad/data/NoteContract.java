@@ -1,5 +1,6 @@
 package com.example.eric.notepad.data;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -43,6 +44,15 @@ public final class NoteContract {
 
         // The content URI to access the note data in the provider
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_NOTES);
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a list of notes.
+         */
+        public static final String CONTENT_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a single note.
+         */
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
 
         //Name of the notes database table
         public final static String TABLE_NAME = "notes";
