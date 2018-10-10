@@ -10,5 +10,7 @@
     <string name="editor_activity_title_new_note">Add a Note</string>
     <string name="editor_insert_note_successful">Note saved</string>
     <string name="editor_insert_note_failed">Error with saving note</string>
+    <string name="empty_view_title_text">It\'s a bit lonely here...</string>
+    <string name="empty_view_subtitle_text">Get started by adding a note</string>
 
 </resources>
