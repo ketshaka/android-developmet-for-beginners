@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.eric.notepad.data.NoteContract;
@@ -25,6 +26,9 @@ import com.example.eric.notepad.data.NoteDbHelper;
  */
 
 public class MainActivity extends AppCompatActivity {
+
+    // Adapter for the ListView
+    NoteCursorAdapter mCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,47 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 null, // selection criteria
                 null); // sort order
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_note);
+        // Find the ListView which will be populated with the note data
+        ListView noteListView = (ListView) findViewById(R.id.list);
 
-        try {
-            // Create a header in the Text View that looks like this:
-            //
-            // The notes table contains <number of rows in Cursor> notes.
-            // _id
-            // title
-            // note
-            //
-            // In the while loop below, iterate through the rows of the cursor and display the
-            // information from each column in this order.
-            displayView.setText("The notes table contains " + cursor.getCount() + " notes.\n\n");
-            displayView.append(NoteContract.NoteEntry._ID + "\n" +
-                    NoteContract.NoteEntry.COLUMN_TITLE + "\n" +
-                    NoteContract.NoteEntry.COLUMN_NOTE + "\n");
+        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
+        NoteCursorAdapter adapter = new NoteCursorAdapter(this, cursor);
 
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry._ID);
-            int titleColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_TITLE);
-            int noteColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_NOTE);
-
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word at the current
-                // row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentTitle = cursor.getString(titleColumnIndex);
-                String currentNote = cursor.getString(noteColumnIndex);
-
-                // Display the values from each column of the current row in the cursor in the
-                // TextView.
-                displayView.append(("\n" + currentID + "\n" +
-                        currentTitle + "\n" +
-                        currentNote + "\n"));
-            }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
-        }
+        // Attach the adapter to the ListView
+        noteListView.setAdapter(adapter);
     }
 
     /**
