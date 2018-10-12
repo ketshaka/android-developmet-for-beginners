@@ -7,7 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.util.Log;
+
 
 public class NoteProvider extends ContentProvider {
 
@@ -104,7 +104,7 @@ public class NoteProvider extends ContentProvider {
 
         // Set notification URI on the Cursor, so we know what content URI the Cursor was created
         // for. If the data at this URI changes, then we know we need to update the Cursor.
-        // cursor.setNotificationUri(getContext().getContentResolver(), uri);
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         // Return the cursor
         return cursor;
@@ -134,6 +134,9 @@ public class NoteProvider extends ContentProvider {
 
         // Insert the new note with the given values
         long id = database.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
+
+        // Notify all listeners that the data has changed for the note content URI
+        getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
         return ContentUris.withAppendedId(uri, id);
@@ -166,33 +169,56 @@ public class NoteProvider extends ContentProvider {
      * Return the number of rows that were successfully updated.
      */
     private int updateNote(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+
+        // If there are no values to update, then don't try to update the database
+        if (values.size() == 0) {
+            return 0;
+
         // Get writeable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Returns the number of database rows affected by the update statement
-        return database.update(NoteContract.NoteEntry.TABLE_NAME, values, selection, selectionArgs);
+        // Perform the update on the database and get the number of rows affected
+        int rowsUpdated = database.update(NoteContract.NoteEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // If 1 or more rows were updated, then notify all listeners that the data at the given URI
+        // has changed
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        // Return the number of rows updated
+        return rowsUpdated;
     }
+
     /**
      * Delete the data at the given selection and selection arguments.
      */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Get writeable database to delete the data
+        // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Track the number of rows that were deleted
+        int rowsDeleted;
 
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case NOTES:
                 // Delete all rows that match the selection and selection args
-                return database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             case NOTE_ID:
                 // Delete a single row given by the ID in the URI
                 selection = NoteContract.NoteEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                return database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
+
+            // Return the number of rows deleted
+            return rowsDeleted;
     }
 
     /**
