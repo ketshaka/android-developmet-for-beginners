@@ -8,7 +8,6 @@ import android.provider.BaseColumns;
  * API Contract for the Notepad app.
  */
 public final class NoteContract {
-        // final so that it cannot be extended. It is just a class for implementing constants
 
     // To prevent someone from accidentally instantiating the contract class, give it an empty
     // constructor.
@@ -23,8 +22,8 @@ public final class NoteContract {
     public static final String CONTENT_AUTHORITY = "com.example.eric.notepad";
 
     /**
-     * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
-     * the content provider.
+     * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact the
+     * content provider.
      */
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
@@ -48,11 +47,13 @@ public final class NoteContract {
         /**
          * The MIME type of the {@link #CONTENT_URI} for a list of notes.
          */
-        public static final String CONTENT_LIST_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
         /**
          * The MIME type of the {@link #CONTENT_URI} for a single note.
          */
-        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_NOTES;
 
         //Name of the notes database table
         public final static String TABLE_NAME = "notes";
