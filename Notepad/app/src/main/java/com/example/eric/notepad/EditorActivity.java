@@ -48,7 +48,7 @@ public class EditorActivity extends AppCompatActivity implements
 
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mPetHasChanged boolean to true.
+     * the view, and we change the mNoteHasChanged boolean to true.
      */
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -83,7 +83,7 @@ public class EditorActivity extends AppCompatActivity implements
 
             // Initialize a loader to read the note data from the database and display the current
             // values in the editor
-            getLoaderManager().initLoader(EXISTING_NOTE_LOADER, null, this);
+            getSupportLoaderManager().initLoader(EXISTING_NOTE_LOADER, null, this);
         }
 
         // Find relevant views that user input will be read from
@@ -257,7 +257,7 @@ public class EditorActivity extends AppCompatActivity implements
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentNoteUri,         // Query the content URI for the current pet
+                mCurrentNoteUri,         // Query the content URI for the current note
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
@@ -334,8 +334,8 @@ public class EditorActivity extends AppCompatActivity implements
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Delete" button, so delete the pet.
-                deletePet();
+                // User clicked the "Delete" button, so delete the note.
+                deleteNote();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -357,7 +357,7 @@ public class EditorActivity extends AppCompatActivity implements
      * Perform the deletion of the note in the database.
      */
     private void deleteNote() {
-        // Only perform the delete if this is an existing pet.
+        // Only perform the delete if this is an existing note.
         if (mCurrentNoteUri != null) {
             // Call the ContentResolver to delete the note at the given content URI.
             // Pass in null for the selection and selection args because the mCurrentNoteUri
