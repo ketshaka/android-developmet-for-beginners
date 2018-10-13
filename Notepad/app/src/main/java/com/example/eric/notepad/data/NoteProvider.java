@@ -8,7 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import com.example.eric.notepad.data.NoteContract.NoteEntry;
 
+/**
+ * {@link ContentProvider} for Notepad app.
+ */
 public class NoteProvider extends ContentProvider {
 
     /** URI matcher code for the content URI for the notes table */
@@ -48,23 +52,15 @@ public class NoteProvider extends ContentProvider {
     /** Database helper object */
     private NoteDbHelper mDbHelper;
 
-    /**
-     * Initialize the provider and the database helper object.
-     */
     @Override
     public boolean onCreate() {
         mDbHelper = new NoteDbHelper(getContext());
         return true;
     }
 
-    /**
-     * Perform the query for the given URI. Use the given projection, selection, selection
-     * arguments, and sort order.
-     */
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
-
         // Get readable database
         SQLiteDatabase database = mDbHelper.getReadableDatabase();
 
@@ -75,44 +71,42 @@ public class NoteProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case NOTES:
-                // For the NOTES code, query the notes table directly with the given projection,
-                // selection, selection arguments, and sort order. The cursor could contain multiple
-                // rows of the notes table.
-                cursor = database.query(NoteContract.NoteEntry.TABLE_NAME, projection, selection, selectionArgs,
+                // For the NOTES code, query the notes table directly with the given
+                // projection, selection, selection arguments, and sort order. The cursor
+                // could contain multiple rows of the notes table.
+                cursor = database.query(NoteEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case NOTE_ID:
                 // For the NOTE_ID code, extract out the ID from the URI.
                 // For an example URI such as "content://com.example.eric.notepad/notes/3",
-                // the selection will be "_id=?" and the selection argument will be a String array
-                // containing the actual ID of 3 in this case.
+                // the selection will be "_id=?" and the selection argument will be a
+                // String array containing the actual ID of 3 in this case.
                 //
                 // For every "?" in the selection, we need to have an element in the selection
                 // arguments that will fill in the "?". Since we have 1 question mark in the
                 // selection, we have 1 String in the selection arguments' String array.
-                selection = NoteContract.NoteEntry._ID + "=?";
+                selection = NoteEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
                 // This will perform a query on the notes table where the _id equals 3 to return a
                 // Cursor containing that row of the table.
-                cursor = database.query(NoteContract.NoteEntry.TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(NoteEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
 
-        // Set notification URI on the Cursor, so we know what content URI the Cursor was created
-        // for. If the data at this URI changes, then we know we need to update the Cursor.
+        // Set notification URI on the Cursor,
+        // so we know what content URI the Cursor was created for.
+        // If the data at this URI changes, then we know we need to update the Cursor.
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         // Return the cursor
         return cursor;
     }
 
-    /**
-     * Insert new data into the provider with the given ContentValues.
-     */
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
@@ -129,11 +123,14 @@ public class NoteProvider extends ContentProvider {
      * for that specific row in the database.
      */
     private Uri insertNote(Uri uri, ContentValues values) {
-        // Get writeable database to insert data
+        // Check that the name is not null
+        String name = values.getAsString(NoteEntry.COLUMN_TITLE);
+
+        // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Insert the new note with the given values
-        long id = database.insert(NoteContract.NoteEntry.TABLE_NAME, null, values);
+        long id = database.insert(NoteEntry.TABLE_NAME, null, values);
 
         // Notify all listeners that the data has changed for the note content URI
         getContext().getContentResolver().notifyChange(uri, null);
@@ -142,20 +139,18 @@ public class NoteProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
     }
 
-    /**
-     * Updates the data at the given selection and selection arguments, with the new ContentValues.
-     */
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
+    public int update(Uri uri, ContentValues contentValues, String selection,
+                      String[] selectionArgs) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case NOTES:
                 return updateNote(uri, contentValues, selection, selectionArgs);
             case NOTE_ID:
-                // For the NOTE_ID code, extract out the ID from the URI, so we know which row to
-                // update. Selection will be "_id=?" and selection arguments will be a String array
-                // containing the actual ID.
-                selection = NoteContract.NoteEntry._ID + "=?";
+                // For the NOTE_ID code, extract out the ID from the URI,
+                // so we know which row to update. Selection will be "_id=?" and selection
+                // arguments will be a String array containing the actual ID.
+                selection = NoteEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateNote(uri, contentValues, selection, selectionArgs);
             default:
@@ -169,19 +164,25 @@ public class NoteProvider extends ContentProvider {
      * Return the number of rows that were successfully updated.
      */
     private int updateNote(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        // If the {@link NoteEntry#COLUMN_TITLE} key is present,
+        // check that the name value is not null.
+        if (values.containsKey(NoteEntry.COLUMN_TITLE)) {
+            String name = values.getAsString(NoteEntry.COLUMN_TITLE);
+        }
 
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {
             return 0;
+        }
 
-        // Get writeable database to update the data
+        // Otherwise, get writeable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Perform the update on the database and get the number of rows affected
-        int rowsUpdated = database.update(NoteContract.NoteEntry.TABLE_NAME, values, selection, selectionArgs);
+        int rowsUpdated = database.update(NoteEntry.TABLE_NAME, values, selection, selectionArgs);
 
-        // If 1 or more rows were updated, then notify all listeners that the data at the given URI
-        // has changed
+        // If 1 or more rows were updated, then notify all listeners that the data at the
+        // given URI has changed
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
@@ -190,9 +191,6 @@ public class NoteProvider extends ContentProvider {
         return rowsUpdated;
     }
 
-    /**
-     * Delete the data at the given selection and selection arguments.
-     */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Get writeable database
@@ -205,33 +203,36 @@ public class NoteProvider extends ContentProvider {
         switch (match) {
             case NOTES:
                 // Delete all rows that match the selection and selection args
-                rowsDeleted = database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(NoteEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case NOTE_ID:
                 // Delete a single row given by the ID in the URI
-                selection = NoteContract.NoteEntry._ID + "=?";
+                selection = NoteEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
-                rowsDeleted = database.delete(NoteContract.NoteEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(NoteEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
 
-            // Return the number of rows deleted
-            return rowsDeleted;
+        // If 1 or more rows were deleted, then notify all listeners that the data at the
+        // given URI has changed
+        if (rowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        // Return the number of rows deleted
+        return rowsDeleted;
     }
 
-    /**
-     * Returns the MIME type of data for the content URI.
-     */
     @Override
     public String getType(Uri uri) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case NOTES:
-                return NoteContract.NoteEntry.CONTENT_LIST_TYPE;
+                return NoteEntry.CONTENT_LIST_TYPE;
             case NOTE_ID:
-                return NoteContract.NoteEntry.CONTENT_ITEM_TYPE;
+                return NoteEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }
