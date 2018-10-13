@@ -3,31 +3,24 @@ package com.example.eric.notepad;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.eric.notepad.data.NoteContract;
-import com.example.eric.notepad.data.NoteDbHelper;
+import com.example.eric.notepad.data.NoteContract.NoteEntry;
 
 /**
  *  Displays notes that were entered and stored in the app.
@@ -65,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements
         ListView noteListView = (ListView) findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
-        // View emptyView = findViewById(R.id.empty_view);
-        // noteListView.setEmptyView(emptyView);
+        //View emptyView = findViewById(R.id.empty_view);
+        //noteListView.setEmptyView(emptyView);
 
         // Setup an Adapter to create a list item for each row of note data in the Cursor.
         // There is no note data yet (until the loader finishes) so pass in null for the Cursor.
@@ -84,9 +77,8 @@ public class MainActivity extends AppCompatActivity implements
                 // by appending the "id" (passed as input to this method) onto the
                 // {@link NoteEntry#CONTENT_URI}.
                 // For example, the URI would be "content://com.example.eric.notepad/notes/2"
-                // if the pet with ID 2 was clicked on.
-                Uri currentNoteUri = ContentUris.withAppendedId(
-                        NoteContract.NoteEntry.CONTENT_URI, id);
+                // if the note with ID 2 was clicked on.
+                Uri currentNoteUri = ContentUris.withAppendedId(NoteEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentNoteUri);
@@ -97,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         // Start the loader
-        getLoaderManager().initLoader(NOTE_LOADER, null, this);
+        getSupportLoaderManager().initLoader(NOTE_LOADER, null, this);
     }
 
     /**
@@ -108,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements
         // Create a ContentValues object where the column names are they keys, and the note's
         // content the values.
         ContentValues values = new ContentValues();
-        values.put(NoteContract.NoteEntry.COLUMN_TITLE, "Sonnet 18 x William Shakespeare");
-        values.put(NoteContract.NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day?\n" +
+        values.put(NoteEntry.COLUMN_TITLE, "Sonnet 18 x William Shakespeare");
+        values.put(NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day?\n" +
                         "Thou art more lovely and more temperate:\n" +
                         "Rough winds do shake the darling buds of May,\n" +
                         "And summer’s lease hath all too short a date:\n" +
@@ -125,18 +117,17 @@ public class MainActivity extends AppCompatActivity implements
                 "So long lives this, and this gives life to thee.\n");
 
         // Insert a new row for Sonnet 18 into the provider using the ContentResolver.
-        // Use the {@link NoteContract.NoteEntry#CONTENT_URI} to indicate that we want to insert
+        // Use the {@link NoteEntry#CONTENT_URI} to indicate that we want to insert
         // into the notes database table.
         // Receive the new content URI that will allow us to access Sonnet 18 data in the future.
-        Uri newUri = getContentResolver().insert(NoteContract.NoteEntry.CONTENT_URI, values);
+        Uri newUri = getContentResolver().insert(NoteEntry.CONTENT_URI, values);
     }
 
     /**
      * Helper method to delete all notes in the database.
      */
     private void deleteAllNotes() {
-        int rowsDeleted = getContentResolver().delete(
-                NoteContract.NoteEntry.CONTENT_URI, null, null);
+        int rowsDeleted = getContentResolver().delete(NoteEntry.CONTENT_URI, null, null);
     }
 
     @Override
@@ -163,17 +154,18 @@ public class MainActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // Define a projection that specifies the columns from the table we care about.
         String[] projection = {
-                NoteContract.NoteEntry._ID,
-                NoteContract.NoteEntry.COLUMN_TITLE,
-                NoteContract.NoteEntry.COLUMN_NOTE };
+                NoteEntry._ID,
+                NoteEntry.COLUMN_TITLE,
+                NoteEntry.COLUMN_NOTE };
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                NoteContract.NoteEntry.CONTENT_URI,   // Provider content URI to query
+                NoteEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
