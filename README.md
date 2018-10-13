@@ -37,6 +37,8 @@ A tour guide app which presents relevant information to a user visiting Cape Tow
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_lauch.png" width="332" height="633"> <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png" width="332" height="633"/>
 
 ## Project 5 News App - Techmunch
+[![progress](https://img.shields.io/badge/progress-90%25-green.svg)](http:shields.io)
+
 News feed app that gives a user regularly updated news from the internet about technology using the [Guardian API](https://open-platform.theguardian.com/).
 
 - **JSON parsing** - Learned how to parse JSON.
@@ -46,6 +48,8 @@ News feed app that gives a user regularly updated news from the internet about t
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Techmunch/techmunch.png" width="332" height="633"/>
 
 ## Project 5 Note Taking App - Notepad
+[![issue_displaying_output](https://img.shields.io/badge/issue-displaying%20output-red.svg)](http:shields.io)
+
 Note taking app that allows the user to take and store notes on their device using SQLite.
 
 - **Using SQLite** - Learned how to store app data in an SQLite database -- a widely used industry data structure. Learned the basics of SQL and practiced reading, modifying and deleting data from a database.
