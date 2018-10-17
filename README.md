@@ -37,7 +37,7 @@ A tour guide app which presents relevant information to a user visiting Cape Tow
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_lauch.png" width="332" height="633"> <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png" width="332" height="633"/>
 
 ## Project 5 News App - Techmunch
-[![progress](https://img.shields.io/badge/progress-90%25-green.svg)](http:shields.io)
+[![progress](https://img.shields.io/badge/progress-95%25-green.svg)](http:shields.io)
 
 News feed app that gives a user regularly updated news from the internet about technology using the [Guardian API](https://open-platform.theguardian.com/).
 
