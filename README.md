@@ -2,7 +2,7 @@
 ## Project 1 Single Screen App - Babbage & Co.
 Designed and implemented a single screen app that displays information about a fictional small business.
 
- - **Building layouts** - Used XML to create the basic structure of a single-screen app by placing layouts and integrating images, buttons and text.  
+ - **Building layouts** - Used XML to create a basic structure of a single-screen app by placing layouts and integrating images, buttons and text.  
 
 <img  src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/BabbageCo/screenshot_babbageco.png" width="332" height="633" />
 
@@ -27,7 +27,7 @@ An educational app that quizzes a user on algorithms and data structures.
 ## Project 4 Tour Guide App - Heart Cape Town
 A tour guide app which presents relevant information to a user visiting Cape Town, South Africa. Referenced from the [official guide](https://www.capetown.travel).
 
-- **Intents and activities** - Used intents and activities to build the structure of an app.
+- **Intents and activities** - Used intents and activities to build the structure of the app.
 - **Java: Interfaces** - Learned how to take advantage of *Java Interfaces* -- a core OOP concept in Java that helps make code more flexible.
 - **Arrays, lists, loops and custom classes** - Learned how to use arrays, lists and loops to populate the app.
 - **Java: Loops** - Used for and while loops to build some logic into the app. Wrote nested loops and used arrays to store and retrieve information.
@@ -37,17 +37,16 @@ A tour guide app which presents relevant information to a user visiting Cape Tow
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_lauch.png" width="332" height="633"> <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/HeartCapeTown/heart_cpt_cray.png" width="332" height="633"/>
 
 ## Project 5 News App - Techmunch
-[![progress](https://img.shields.io/badge/progress-95%25-green.svg)](http:shields.io)
 
 News feed app that gives a user regularly updated news from the internet about technology using the [Guardian API](https://open-platform.theguardian.com/).
 
 - **JSON parsing** - Learned how to parse JSON.
-- **HTTP Networking** - Learned how to connect to the internet in your Android code.
+- **HTTP Networking** - Learned how to connect the app to the internet.
 - **Threads and Parallelism** - Learned how to use threads to make a device do multiple things at a time.
 
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Techmunch/techmunch.png" width="332" height="633"/>
 
-## Project 5 Note Taking App - Notepad
+## Project 6 Note Taking App - Notepad
 [![issue_displaying_output](https://img.shields.io/badge/issue-displaying%20output-red.svg)](http:shields.io)
 
 Note taking app that allows the user to take and store notes on their device using SQLite.
