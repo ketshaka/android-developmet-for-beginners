@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.eric.notepad.data.NoteContract;
+import com.example.eric.notepad.data.NoteContract.NoteEntry;
 
 /**
  * {@link NoteCursorAdapter} is an adapter for a list or grid view that uses a {@link Cursor} of
@@ -55,18 +55,18 @@ public class NoteCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView headingTextView = (TextView) view.findViewById(R.id.heading);
-        TextView contentTextView = (TextView) view.findViewById(R.id.content);
+        TextView bodyTextView = (TextView) view.findViewById(R.id.body);
 
         // Find the columns of note attributes that we're interested in
-        int headingColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_TITLE);
-        int contentColumnIndex = cursor.getColumnIndex(NoteContract.NoteEntry.COLUMN_NOTE);
+        int headingColumnIndex = cursor.getColumnIndex(NoteEntry.COLUMN_TITLE);
+        int bodyColumnIndex = cursor.getColumnIndex(NoteEntry.COLUMN_NOTE);
 
         // Read the note attributes from the Cursor for the current note
         String noteTitle = cursor.getString(headingColumnIndex);
-        String noteContent = cursor.getString(contentColumnIndex);
+        String noteBody = cursor.getString(bodyColumnIndex);
 
         // Update the TextViews with the attributes for the current note
         headingTextView.setText(noteTitle);
-        contentTextView.setText(noteContent);
+        bodyTextView.setText(noteBody);
     }
 }
