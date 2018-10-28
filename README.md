@@ -43,6 +43,9 @@ News feed app that gives a user regularly updated news from the internet about t
 - **HTTP Networking** - Learned how to connect the app to the internet.
 - **Threads and Parallelism** - Learned how to use threads to make a device do multiple things at a time.
 
+#### Instructions
+Replace the test API key in `NewsActivity.java` with one issued from [Guardian API](https://open-platform.theguardian.com/) to enable the JSON query to happen within the app.
+
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Techmunch/techmunch.png" width="332" height="633"/>
 
 ## Project 6 Note Taking App - Notepad
