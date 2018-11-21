@@ -1,4 +1,7 @@
 # Android Development for Beginners
+
+![Badge](https://img.shields.io/badge/java-android-green.svg)
+
 ## Project 1 Single Screen App - Babbage & Co.
 Designed and implemented a single screen app that displays information about a fictional small business.
 
