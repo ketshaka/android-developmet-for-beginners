@@ -10,7 +10,7 @@
     <string name="which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_list">Which of the following data structure(s) can be seen as a form of list?</string>
     <string name="question_3">question 3</string>
     <string name="question_2">question 2</string>
-    <string name="no">No (\'\'.)</string>
+    <string name="no">No \u270b</string>
     <string name="oh_yes">Oh yes!</string>
     <string name="iterative_structures_refer_to_algorithms_where_the_instructions_are_repeated_in_a_looping_manner">Iterative structures refer to algorithms where the instructions are repeated in a looping manner.</string>
     <string name="question_1">question 1</string>
@@ -22,4 +22,7 @@
     <string name="submit">Submit</string>
     <string name="reset">Reset</string>
     <string name="answer">Answer</string>
+    <string name="q2_answer">recursion</string>
+    <string name="whoop">Whoop! (\'.\')/*</string>
+    <string name="over_4">/4</string>
 </resources>
