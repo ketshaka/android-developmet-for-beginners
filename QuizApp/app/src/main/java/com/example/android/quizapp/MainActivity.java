@@ -1,16 +1,12 @@
 package com.example.android.quizapp;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkQuesTwo(){
         String algo = getQuesTwoInput();
-        if (algo.trim().equalsIgnoreCase("recursion")){
+        if (algo.trim().equalsIgnoreCase(getString(R.string.q2_answer))){
             score += 1;
         }
     }
@@ -83,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     final View.OnClickListener submitButtonOnClickListener = new View.OnClickListener() {
         public void onClick(final View v){
             checkQues();
-            Toast.makeText(MainActivity.this, "Whoop! ('.')/* " + score + "/4",
+            Toast.makeText(MainActivity.this, getString(R.string.whoop) + score + getString(R.string.over_4),
                     Toast.LENGTH_LONG).show();
             resetScore();
         }
