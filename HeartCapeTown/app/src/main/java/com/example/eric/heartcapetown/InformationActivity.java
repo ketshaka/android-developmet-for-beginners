@@ -15,8 +15,8 @@ public class InformationActivity extends AppCompatActivity {
 
         // Create list of visitor information centres
         ArrayList<Attraction> attractions = new ArrayList<>();
-        attractions.add(new Attraction("Cape Town International Airport", "Cape Town International Airport is the primary airport serving the city of Cape Town, and is the second-busiest airport in South Africa and third-busiest in Africa. Located approximately 20 kilometres from the city centre, the airport was opened in 1954 to replace Cape Town's previous airport, Wingfield Aerodrome.", "airport@capetown.travel", R.drawable.airport));
-        attractions.add(new Attraction("City Centre", "Aptly referred to as the City Bowl, the heart of the city is held in an enclosed basin formed between the Atlantic Ocean and the face of Table Mountain, flanked on one side by Lion’s Head and Signal Hill, and on the other by Devil’s Peak. From the busy sea port, through the business centre, and up into the more residential slopes, the city reveals its rich history and contemporary metropolitan character. Cape Town City Centre is made up of the Foreshore, CBD, Bo-Kaap, Gardens, Higgovale, Tamboerskloof, Oranjezicht, Vredehoek and Devil’s Peak.", "info@capetown.travel", R.drawable.city_centre));
+        attractions.add(new Attraction(getString(R.string.cpt_int_heading), getString(R.string.cpt_int_description), getString(R.string.cpt_int_contact), R.drawable.airport));
+        attractions.add(new Attraction(getString(R.string.city_centre_heading), getString(R.string.city_centre_description), getString(R.string.city_centre_contact), R.drawable.city_centre));
 
         // Find the {@link attractionsListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the

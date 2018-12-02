@@ -18,5 +18,29 @@
     <!-- Heading for third information centre: V&A Waterfront -->
     <string name="v_a_waterfront"><![CDATA[V&A Waterfront]]></string>
     <string name="picture_of_attraction">picture of attraction</string>
+    <string name="addis_description">Voted best African eatery in Cape Town, Addis In Cape is an authentic Ethiopian restaurant that caters for non-vegetarian and vegan clients. We provide gluten-free communal dining in a unique relaxing ambiance you, your family and friends will remember. Discover and enjoy Ethiopian dining, ending with a traditional Ethiopian coffee.</string>
+    <string name="addis_heading">Addis In Cape Ethiopian Restaurant</string>
+    <string name="addis_contact">addisincape.co.za</string>
+    <string name="karibu_heading">Karibu Restaurant</string>
+    <string name="karibu_description">Set between the picturesque view of Table Mountain and the tranquil blue waters of the Atlantic Ocean, Karibu affords the opportunity to experience the vibrant flavours of South Africa. We invite you to encounter the ruggedness of Africa within the luxurious setting of our restaurant where a mixed fusion of African ambiance blends itself with the flavours of our heritage.</string>
+    <string name="karibu_contact">kariburestaurant.co.za</string>
+    <string name="cpt_int_heading">Cape Town International Airport</string>
+    <string name="cpt_int_description">Cape Town International Airport is the primary airport serving the city of Cape Town, and is the second-busiest airport in South Africa and third-busiest in Africa. Located approximately 20 kilometres from the city centre, the airport was opened in 1954 to replace Cape Town\'s previous airport, Wingfield Aerodrome.</string>
+    <string name="cpt_int_contact">airport@capetown.travel</string>
+    <string name="city_centre_heading">City Centre</string>
+    <string name="city_centre_description">Aptly referred to as the City Bowl, the heart of the city is held in an enclosed basin formed between the Atlantic Ocean and the face of Table Mountain, flanked on one side by Lion’s Head and Signal Hill, and on the other by Devil’s Peak. From the busy sea port, through the business centre, and up into the more residential slopes, the city reveals its rich history and contemporary metropolitan character. Cape Town City Centre is made up of the Foreshore, CBD, Bo-Kaap, Gardens, Higgovale, Tamboerskloof, Oranjezicht, Vredehoek and Devil’s Peak.</string>
+    <string name="city_centre_contact">info@capetown.travel</string>
+    <string name="cray_heading">Crayfish Trail</string>
+    <string name="cray_description">Experience South Africa’s beautiful West Coast! Join us on The Crayfish Trail, a multi-day trail that follows the rugged coastline between the Berg and Olifants Rivers. We offer a unique blend of community life,culture, history, food, wine and wildlife. All trails include meals, accommodation, transport and guides.</string>
+    <string name="cray_contact">info@crayfishtrail.co.za</string>
+    <string name="alpaca_heading">Alpaca Loom Coffee Shop and Weaving Studio</string>
+    <string name="alpaca_description">Visit South Africa’s biggest alpaca herd! Watch our weavers at work, interact with alpacas in the petting zoo and enjoy views of Table Mountain. Delicious coffee and cake, exquisite scarves, shawls, blankets and knitwear made locally from local alpaca fiber. Open daily 10am – 6pm. Tours held Friday to Sunday at 3pm.</string>
+    <string name="alpaca_contact">alpacas.co.za</string>
+    <string name="forty_heading">40/40 Club Cape Town</string>
+    <string name="forty_description">In the heart of the CBD, 40/40 Club Cape Town gives you the ultimate nightlife sensory experience. Mixing luxurious and sensuous décor, cutting-edge sound and high-end service, this is the perfect venue for your evening out, private party or any other celebration. Open Thursday, Friday and Saturday.</string>
+    <string name="forty_contact">4040clubcapetown.co.za</string>
+    <string name="coco_heading">Coco</string>
+    <string name="coco_description">The focus at Coco is high-end bottle service, excellent customer attention, beautiful clientele and incredible music all set in a sexy and glam environment. Musically, get ready for the finest commercial hiphop, house, dance and everything in between every Friday and Saturday nights.</string>
+    <string name="coco_contact">cococpt.co.za</string>
 
 </resources>

@@ -14,8 +14,8 @@ public class EatAndDrinkActivity extends AppCompatActivity{
 
         // Create list of eat and drink attractions
         ArrayList<Attraction> attractions = new ArrayList<>();
-        attractions.add(new Attraction("Addis In Cape Ethiopian Restaurant", "Voted best African eatery in Cape Town, Addis In Cape is an authentic Ethiopian restaurant that caters for non-vegetarian and vegan clients. We provide gluten-free communal dining in a unique relaxing ambiance you, your family and friends will remember. Discover and enjoy Ethiopian dining, ending with a traditional Ethiopian coffee.", "addisincape.co.za", R.drawable.addis));
-        attractions.add(new Attraction("Karibu Restaurant", "Set between the picturesque view of Table Mountain and the tranquil blue waters of the Atlantic Ocean, Karibu affords the opportunity to experience the vibrant flavours of South Africa. We invite you to encounter the ruggedness of Africa within the luxurious setting of our restaurant where a mixed fusion of African ambiance blends itself with the flavours of our heritage.", "kariburestaurant.co.za", R.drawable.karibu));
+        attractions.add(new Attraction(getString(R.string.addis_heading), getString(R.string.addis_description), getString(R.string.addis_contact), R.drawable.addis));
+        attractions.add(new Attraction(getString(R.string.karibu_heading), getString(R.string.karibu_description), getString(R.string.karibu_contact), R.drawable.karibu));
 
         // Find the {@link attractionsListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
