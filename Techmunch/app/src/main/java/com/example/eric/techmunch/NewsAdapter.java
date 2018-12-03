@@ -1,19 +1,13 @@
 package com.example.eric.techmunch;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * A {@link NewsAdapter} creates a a list item layout for each news story in the data source (a list
