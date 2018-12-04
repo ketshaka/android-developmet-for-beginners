@@ -10,16 +10,7 @@
 
     <EditText
         android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:autofillHints=""
-        android:background="@null"
-        android:ems="10"
+        style="@style/noteStyle"
         android:hint="@string/title"
         android:inputType="text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -31,15 +22,8 @@
 
     <EditText
         android:id="@+id/note"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
+        style="@style/noteStyle"
+        android:layout_marginBottom="@dimen/margin"
         android:hint="@string/note"
         android:inputType="textMultiLine"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -48,7 +32,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0"
-        android:background="@null"
-        android:autofillHints="" tools:targetApi="o"/>
-
+        tools:targetApi="o"/>
 </android.support.constraint.ConstraintLayout>
