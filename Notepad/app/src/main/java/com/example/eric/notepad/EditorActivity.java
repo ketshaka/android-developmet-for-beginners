@@ -4,11 +4,9 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.CursorLoader;
@@ -24,7 +22,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.eric.notepad.data.NoteContract;
-import com.example.eric.notepad.data.NoteDbHelper;
 
 /**
  *  Allows user to create a new note or edit an existing one.
