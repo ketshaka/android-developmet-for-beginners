@@ -11,7 +11,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.view.View;
 import android.view.Menu;
@@ -95,21 +94,8 @@ public class MainActivity extends AppCompatActivity implements
         // Create a ContentValues object where the column names are they keys, and the note's
         // content the values.
         ContentValues values = new ContentValues();
-        values.put(NoteEntry.COLUMN_TITLE, "Sonnet 18 x William Shakespeare");
-        values.put(NoteEntry.COLUMN_NOTE, "Shall I compare thee to a summer’s day?\n" +
-                        "Thou art more lovely and more temperate:\n" +
-                        "Rough winds do shake the darling buds of May,\n" +
-                        "And summer’s lease hath all too short a date:\n" +
-                        "Sometime too hot the eye of heaven shines,\n" +
-                        "And often is his gold complexion dimm’d;\n" +
-                        "And every fair from fair sometime declines,\n" +
-                        "By chance or nature’s changing course untrimm’d;\n" +
-                        "But thy eternal summer shall not fade:\n" +
-                        "Nor lose possession of that fair thou owest;\n" +
-                        "Nor shall Death brag thou wander’st in his shade,\n" +
-                        "When in eternal lines to time thou growest:\n" +
-                        "So long as men can breathe or eyes can see,\n" +
-                "So long lives this, and this gives life to thee.\n");
+        values.put(NoteEntry.COLUMN_TITLE, getString(R.string.sample_column_title));
+        values.put(NoteEntry.COLUMN_NOTE, getString(R.string.sample_column_note) );
 
         // Insert a new row for Sonnet 18 into the provider using the ContentResolver.
         // Use the {@link NoteEntry#CONTENT_URI} to indicate that we want to insert
