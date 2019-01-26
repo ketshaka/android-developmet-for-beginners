@@ -24,7 +24,7 @@ public class NewsActivity extends AppCompatActivity
 
     // URL for news data from the Guardian API
     private static final String REQUEST_URL =
-            "https://content.guardianapis.com/search?q=technology&api-key=test";
+            "https://content.guardianapis.com/search?q=technology&api-key=YOUR_API_KEY";
 
     /**
      * Constant value for the news loader ID. We can choose any integer. This really only comes into
