@@ -47,7 +47,7 @@ News feed app that gives a user regularly updated news from the internet about t
 - **Threads and Parallelism** - Learned how to use threads to make a device do multiple things at a time.
 
 #### Instructions - Enabling JSON parsing
-1. Register for an API key on the Guardian's [API platform](https://open-platform.theguardian.com/). 
+1. Register for an API key on the [Guardian's API platform](https://open-platform.theguardian.com/). 
 2. In `NewsActivity.java`, replace `"YOUR_API_KEY"` in the query URL string with the API key issued from the Guardian.
 
 <img src="https://raw.githubusercontent.com/ketshaka/android-developmet-for-beginners/master/Techmunch/techmunch.png" width="332" height="633"/>
