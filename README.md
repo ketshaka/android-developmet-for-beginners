@@ -1,6 +1,6 @@
 # Android Development for Beginners
 
-<centre><img src="android_greenrobot.svg" width="150"></centre>
+<p align="center"><img src="android_greenrobot.svg" width="150"></p>
 
 ## Project 1 Single Screen App - Babbage & Co.
 Designed and implemented a single screen app that displays information about a fictional small business.
