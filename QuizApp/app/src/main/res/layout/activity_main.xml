@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -210,9 +211,10 @@
             android:layout_marginLeft="@dimen/med_margin"
             android:layout_marginEnd="@dimen/med_margin"
             android:layout_marginRight="@dimen/med_margin"
-            android:text="@string/which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_list"
+            android:text="@string/which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_an_array"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/q3title" />
 
@@ -283,7 +285,7 @@
             android:layout_marginLeft="@dimen/med_margin"
             android:layout_marginEnd="@dimen/med_margin"
             android:layout_marginRight="@dimen/med_margin"
-            android:text="@string/which_sort_algorithm_is_described_below"
+            android:text="@string/which_sorting_algorithm_is_described_below"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

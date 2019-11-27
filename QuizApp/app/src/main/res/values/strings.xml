@@ -2,12 +2,12 @@
     <string name="app_name">Quiz App</string>
     <string name="game_show">game show!</string>
     <string name="repeatedly_compares_each_pair_of_adjacent_names_and_swaps_them_if_they_are_not_in_the_right_order_the_process_is_repeated_until_no_swaps_required">Repeatedly compares each pair of adjacent names and swaps them if they are not in the right order. The process is repeated until no swaps required.</string>
-    <string name="which_sort_algorithm_is_described_below">Which sort algorithm is described below?</string>
+    <string name="which_sorting_algorithm_is_described_below">Which sorting algorithm is described below?</string>
     <string name="question_4">question 4</string>
     <string name="trees">Trees</string>
     <string name="stacks">Stacks</string>
     <string name="queues">Queues</string>
-    <string name="which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_list">Which of the following data structure(s) can be seen as a form of list?</string>
+    <string name="which_of_the_following_data_structure_s_can_be_seen_as_a_form_of_an_array">Which of the following data structure(s) can be seen as a form of an array?</string>
     <string name="question_3">question 3</string>
     <string name="question_2">question 2</string>
     <string name="no">No \u270b</string>
@@ -23,6 +23,4 @@
     <string name="reset">Reset</string>
     <string name="answer">Answer</string>
     <string name="q2_answer">recursion</string>
-    <string name="whoop">Whoop! (\'.\')/*</string>
-    <string name="over_4">/4</string>
 </resources>
