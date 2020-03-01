@@ -7,12 +7,12 @@
     <string name="delete_all_notes">Delete All Notes</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
-    <string name="editor_activity_title_new_note">Add a Note</string>
+    <string name="editor_activity_title_new_note">Add Note</string>
     <string name="editor_insert_note_successful">Note saved</string>
     <string name="editor_insert_note_failed">Error with saving note</string>
     <string name="empty_view_title_text">It\'s a bit lonely here...</string>
     <string name="empty_view_subtitle_text">Get started by adding a note</string>
-    <string name="editor_activity_title_edit_note">Edit a Note</string>
+    <string name="editor_activity_title_edit_note">Edit Note</string>
     <string name="editor_update_note_failed">Error with updating note</string>
     <string name="editor_update_note_successful">Note updated</string>
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
