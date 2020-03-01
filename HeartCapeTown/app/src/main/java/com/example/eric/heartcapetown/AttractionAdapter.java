@@ -12,15 +12,13 @@ import android.widget.TextView;
 import java.util.List;
 
 public class AttractionAdapter extends ArrayAdapter<Attraction> {
-
     // Resource ID for the background colour for the list of attractions
     private int mColorResourceId;
 
     /**
-     * Create a new {@link AttractionAdapter} object
-     *
-     * @param context is the current context (activity) that the adapter is being created
-     * @param attractions is the list of {@link Attraction} to be displayed
+     * Create a new AttractionAdapter object.
+     * @param context is the current context (activity) that the adapter is being created.
+     * @param attractions is the list of Attraction to be displayed.
      */
     public AttractionAdapter(Context context, List<Attraction> attractions, int colorResourceId) {
         super(context, 0, attractions);
@@ -36,28 +34,28 @@ public class AttractionAdapter extends ArrayAdapter<Attraction> {
                     R.layout.attraction_list_item, parent, false);
         }
 
-        // Get the {@link Attraction} object located at this position in the list
+        // Get the Attraction object located at this position in the list
         Attraction currentAttraction = getItem(position);
 
-        // Find the TextView in the attraction_list_item.xml layout with the ID heading
+        // Find the TextView in the attraction_list_item.xml layout with the ID: heading
         TextView headingView = (TextView) listItemView.findViewById(R.id.heading);
         // Get the heading from the currentAttraction object and set this text on the heading
         // TextView
         headingView.setText(currentAttraction.getHeading());
 
-        // Find the TextView in the attraction_list_item.xml layout with the ID description
+        // Find the TextView in the attraction_list_item.xml layout with the ID: description
         TextView descriptionView = (TextView) listItemView.findViewById(R.id.description);
         // Get the description from the currentAttraction object and set this text on the
-        // description TextView
+        // description TextView.
         descriptionView.setText(currentAttraction.getDescription());
 
-        // Find the TextView in the attraction_list_item.xml layout with the ID contacts
+        // Find the TextView in the attraction_list_item.xml layout with the ID: contacts
         TextView contactsView = (TextView) listItemView.findViewById(R.id.contacts);
         // Get the contacts from the currentAttraction object and set this text on the contacts
         // TextView
         contactsView.setText(currentAttraction.getContacts());
 
-        // Find the ImageView in the attraction_list_item.xml layout with the ID picture
+        // Find the ImageView in the attraction_list_item.xml layout with the ID: picture
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.picture);
         // Get the image resource ID from the currentAttraction object and display provided image
         // based on the resource ID
@@ -72,6 +70,5 @@ public class AttractionAdapter extends ArrayAdapter<Attraction> {
 
         // Return the whole list item layout
         return listItemView;
-
     }
 }

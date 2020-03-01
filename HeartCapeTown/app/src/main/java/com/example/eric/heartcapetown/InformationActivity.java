@@ -18,17 +18,14 @@ public class InformationActivity extends AppCompatActivity {
         attractions.add(new Attraction(getString(R.string.cpt_int_heading), getString(R.string.cpt_int_description), getString(R.string.cpt_int_contact), R.drawable.airport));
         attractions.add(new Attraction(getString(R.string.city_centre_heading), getString(R.string.city_centre_description), getString(R.string.city_centre_contact), R.drawable.city_centre));
 
-        // Find the {@link attractionsListView} object in the view hierarchy of the {@link Activity}.
-        // There should be a {@link ListView} with the view ID called list, which is declared in the
-        // word_list.xml layout file.
+        // Find the attractionsListView object in the view hierarchy of the activity, there should
+        // be a ListView with the view ID list, which is declared in word_list.xml
         ListView attractionsListView = (ListView) findViewById(R.id.list);
 
-        // Create an {@link AttractionAdapter}, whose data source is a list of {@link Attraction}s
+        // Create an AttractionAdapter, whose data source is a list of Attractions
         AttractionAdapter adapter = new AttractionAdapter(this, attractions, R.color.category_information);
 
-        // Make the {@link attractionsListView} use the {@link AttractionAdapter} we created above,
-        // so that the {@link attractionsListView} will display list items for each {@link Word} in
-        // the list.
+        // Make the attractionsListView use the AttractionAdapter created above
         attractionsListView.setAdapter(adapter);
     }
 
