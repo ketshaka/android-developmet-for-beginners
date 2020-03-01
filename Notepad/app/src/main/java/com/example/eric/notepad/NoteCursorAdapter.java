@@ -11,21 +11,11 @@ import android.widget.TextView;
 import com.example.eric.notepad.data.NoteContract.NoteEntry;
 
 /**
- * {@link NoteCursorAdapter} is an adapter for a list or grid view that uses a {@link Cursor} of
- * note data as its data source. This adapter knows how to create list items for each row of note
- * data in the {@link Cursor}.
+ * NoteCursorAdapter is an adapter for a list or grid view that uses a Cursor of note data as its
+ * data source. This adapter knows how to create list items for each row of note data in the Cursor.
  */
 public class NoteCursorAdapter extends CursorAdapter {
-
-    /**
-     * Constructs a new {@link NoteCursorAdapter}.
-     *
-     * @param context The context
-     * @param c       The cursor from which to get the data.
-     */
-    public NoteCursorAdapter(Context context, Cursor c) {
-        super(context, c, 0 /* flags */);
-    }
+    public NoteCursorAdapter(Context context, Cursor c) { super(context, c, 0 ); }
 
     /**
      * Makes a new blank list item view. No data is set (or bound) to the views yet.

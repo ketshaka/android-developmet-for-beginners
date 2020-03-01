@@ -26,27 +26,20 @@ import com.example.eric.notepad.data.NoteContract;
 /**
  *  Allows user to create a new note or edit an existing one.
  */
-public class EditorActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
-
+public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     // Identifier for the notes data loader
     private static final int EXISTING_NOTE_LOADER = 0;
-
-    /** Content URI for the existing note (null if it's a new note) */
+    // Content URI for the existing note
     private Uri mCurrentNoteUri;
-
     // EditText field to enter the note's title
     private EditText mTitleEditText;
     // EditText field to enter the note's body
     private EditText mNoteEditText;
-
-    /** Boolean flag that keeps track of whether the note has been edited (true) or not (false) */
+    // Flag that keeps track of whether the note has been edited (true) or not (false)
     private boolean mNoteHasChanged = false;
 
-    /**
-     * OnTouchListener that listens for any user touches on a View, implying that they are modifying
-     * the view, and we change the mNoteHasChanged boolean to true.
-     */
+    // OnTouchListener that listens for any user touches on a View, implying that they are modifying
+    // the view, and thus we set mNoteHasChanged to true
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -66,13 +59,13 @@ public class EditorActivity extends AppCompatActivity implements
         mCurrentNoteUri = intent.getData();
 
         // If the intent DOES NOT contain a note content URI, then we know that we are
-        // creating a new note.
+        // creating a new note
         if (mCurrentNoteUri == null) {
-            // This is a new note, so change the app bar to say "Add a Note"
+            // This is a new note, so change the app bar to say "Add Note"
             setTitle(getString(R.string.editor_activity_title_new_note));
 
-            // Invalidate the options menu, so the "Delete" menu option can be hidden.
-            // (It doesn't make sense to delete a note that hasn't been created yet.)
+            // Invalidate the options menu, so the "Delete" menu option can be hidden (it wouldn't
+            // make sense to delete a note that hasn't been created yet).
             invalidateOptionsMenu();
         } else {
             // Otherwise this is an existing note, so change app bar to say "Edit Note"
@@ -83,7 +76,7 @@ public class EditorActivity extends AppCompatActivity implements
             getSupportLoaderManager().initLoader(EXISTING_NOTE_LOADER, null, this);
         }
 
-        // Find relevant views that user input will be read from
+        // Find relevant views that the user input will be read from
         mTitleEditText = (EditText) findViewById(R.id.title);
         mNoteEditText = (EditText) findViewById(R.id.note);
 

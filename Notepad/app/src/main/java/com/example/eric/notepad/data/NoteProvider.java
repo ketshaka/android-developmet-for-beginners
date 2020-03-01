@@ -11,16 +11,13 @@ import android.net.Uri;
 import com.example.eric.notepad.data.NoteContract.NoteEntry;
 
 /**
- * {@link ContentProvider} for Notepad app.
+ * ContentProvider for Notepad app.
  */
 public class NoteProvider extends ContentProvider {
-
     /** URI matcher code for the content URI for the notes table */
     private static final int NOTES = 100;
-
     /** URI matcher code for the content URI for a single note in the notes table */
     private static final int NOTE_ID = 101;
-
     /**
      * UriMatcher object to match a content URI to a corresponding code.
      * The input passed into the constructor represents the code to return for the root URI.
@@ -35,13 +32,13 @@ public class NoteProvider extends ContentProvider {
         // when a match is found.
 
         // The content URI of the form "content://com.example.eric.notepad/notes" will map to the
-        // integer code {@link #NOTES}. This URI is used to provide access to MULTIPLE rows
-        // of the notes table.
+        // integer code NOTES. This URI is used to provide access to MULTIPLE rows of the notes
+        // table.
         sUriMatcher.addURI(NoteContract.CONTENT_AUTHORITY, NoteContract.PATH_NOTES, NOTES);
 
         // The content URI of the form "content://com.example.eric.notepad/notes/#" will map to the
-        // integer code {@link #NOTE_ID}. This URI is used to provide access to ONE single row
-        // of the notes table.
+        // integer code NOTE_ID. This URI is used to provide access to ONE single row of the notes
+        // table.
         //
         // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
         // For example, "content://com.example.eric.notepad/notes/3" matches, but
@@ -49,7 +46,7 @@ public class NoteProvider extends ContentProvider {
         sUriMatcher.addURI(NoteContract.CONTENT_AUTHORITY, NoteContract.PATH_NOTES + "/#", NOTE_ID);
     }
 
-    /** Database helper object */
+    // Database helper object
     private NoteDbHelper mDbHelper;
 
     @Override
@@ -98,9 +95,8 @@ public class NoteProvider extends ContentProvider {
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
 
-        // Set notification URI on the Cursor,
-        // so we know what content URI the Cursor was created for.
-        // If the data at this URI changes, then we know we need to update the Cursor.
+        // Set notification URI on the Cursor, so we know what content URI the Cursor was created
+        // for. If the data at this URI changes, then we know we need to update the Cursor.
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         // Return the cursor
@@ -164,8 +160,7 @@ public class NoteProvider extends ContentProvider {
      * Return the number of rows that were successfully updated.
      */
     private int updateNote(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // If the {@link NoteEntry#COLUMN_TITLE} key is present,
-        // check that the name value is not null.
+        // If the COLUMN_TITLE key is present, check that the name value is not null
         if (values.containsKey(NoteEntry.COLUMN_TITLE)) {
             String name = values.getAsString(NoteEntry.COLUMN_TITLE);
         }
@@ -181,8 +176,8 @@ public class NoteProvider extends ContentProvider {
         // Perform the update on the database and get the number of rows affected
         int rowsUpdated = database.update(NoteEntry.TABLE_NAME, values, selection, selectionArgs);
 
-        // If 1 or more rows were updated, then notify all listeners that the data at the
-        // given URI has changed
+        // If 1 or more rows were updated, then notify all listeners that the data at the given URI
+        // has changed
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
@@ -215,8 +210,8 @@ public class NoteProvider extends ContentProvider {
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
 
-        // If 1 or more rows were deleted, then notify all listeners that the data at the
-        // given URI has changed
+        // If 1 or more rows were deleted, then notify all listeners that the data at the given URI
+        // has changed
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }

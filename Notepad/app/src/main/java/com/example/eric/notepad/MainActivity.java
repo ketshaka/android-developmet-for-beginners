@@ -23,7 +23,6 @@ import com.example.eric.notepad.data.NoteContract.NoteEntry;
 /**
  *  Displays notes that were entered and stored in the app.
  */
-
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -51,12 +50,8 @@ public class MainActivity extends AppCompatActivity implements
         // Find the ListView which will be populated with the note data
         ListView noteListView = (ListView) findViewById(R.id.list);
 
-        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
-        //View emptyView = findViewById(R.id.empty_view);
-        //noteListView.setEmptyView(emptyView);
-
-        // Setup an Adapter to create a list item for each row of note data in the Cursor.
-        // There is no note data yet (until the loader finishes) so pass in null for the Cursor.
+        // Setup an Adapter to create a list item for each row of note data in the Cursor. There is
+        // no note data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new NoteCursorAdapter(this, null);
         noteListView.setAdapter(mCursorAdapter);
 
@@ -64,24 +59,22 @@ public class MainActivity extends AppCompatActivity implements
         noteListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Create new intent to go to {@link EditorActivity}
+                // Create new intent to go to EditorActivity
                 Intent intent = new Intent(MainActivity.this, EditorActivity.class);
 
-                // Form the content URI that represents the specific note that was clicked on,
-                // by appending the "id" (passed as input to this method) onto the
-                // {@link NoteEntry#CONTENT_URI}.
-                // For example, the URI would be "content://com.example.eric.notepad/notes/2"
-                // if the note with ID 2 was clicked on.
+                // Form the content URI that represents the specific note that was clicked on, by
+                // appending the "id" (passed as input to this method) onto the CONTENT_URI. For
+                // example, the URI would be "content://com.example.eric.notepad/notes/2" if a note
+                // with ID 2 was clicked on.
                 Uri currentNoteUri = ContentUris.withAppendedId(NoteEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
                 intent.setData(currentNoteUri);
 
-                // Launch the {@link EditorActivity} to display the data for the current note.
+                // Launch the EditorActivity to display the data for the current note
                 startActivity(intent);
             }
         });
-
         // Start the loader
         getSupportLoaderManager().initLoader(NOTE_LOADER, null, this);
     }
@@ -98,8 +91,7 @@ public class MainActivity extends AppCompatActivity implements
         values.put(NoteEntry.COLUMN_NOTE, getString(R.string.sample_column_note) );
 
         // Insert a new row for Sonnet 18 into the provider using the ContentResolver.
-        // Use the {@link NoteEntry#CONTENT_URI} to indicate that we want to insert
-        // into the notes database table.
+        // Use the CONTENT_URI to indicate that we want to insert into the notes database table.
         // Receive the new content URI that will allow us to access Sonnet 18 data in the future.
         Uri newUri = getContentResolver().insert(NoteEntry.CONTENT_URI, values);
     }
@@ -113,8 +105,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu options from the res/menu/menu_main.xml file.
-        // This adds items to the action bar if it is present.
+        // Inflate the menu options from the res/menu/menu_main.xml file. This adds items to the
+        // action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -145,16 +137,17 @@ public class MainActivity extends AppCompatActivity implements
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                NoteEntry.CONTENT_URI,   // Provider content URI to query
+                NoteEntry.CONTENT_URI,  // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                null);                  // Default sort order
+                null                    // Default sort order
+                );                  
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // Update {@link NoteCursorAdapter} with this new cursor containing updated note data
+        // Update NoteCursorAdapter with this new cursor containing updated note data
         mCursorAdapter.swapCursor(data);
 
     }
